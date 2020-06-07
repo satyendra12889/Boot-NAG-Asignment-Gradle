@@ -1,0 +1,57 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/configuration/SecurityConfig.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/configuration/SwaggerConfig.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/controller/AuthController.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/controller/TicketController.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/dao/impl/EmployeeDaoImpl.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/dao/impl/TicketDaoImpl.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/dao/EmployeeDao.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/dao/TicketDao.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/model/Employee.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/model/Ticket.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/service/impl/EmployeeServiceImpl.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/service/impl/TicketServiceImpl.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/service/EmployeeService.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/service/TicketService.class
+bin/main/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/BootNagApplicationGradleApplication.class
+bin/main/templates/delete.html
+bin/main/templates/error.html
+bin/main/templates/index.html
+bin/main/templates/login.html
+bin/main/templates/main.html
+bin/main/templates/update.html
+bin/main/application.properties
+bin/test/com/satyendra/nagarro/demo/application/BootNAGApplicationGradle/BootNagApplicationGradleApplicationTests.class
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.properties
