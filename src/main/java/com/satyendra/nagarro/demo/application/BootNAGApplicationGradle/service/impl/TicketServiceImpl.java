@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,13 @@ public class TicketServiceImpl implements  TicketService{
 	@Autowired
 	TicketJpaRepository ticketRepo;
 	
-	@Cacheable(value = "ticket", key = "#employeeId")
+//	@Cacheable(value = "ticket", key = "#employeeId")
 	@Override
 	public List<Ticket> getAllTicket(long employeeId) {
 		return ticketRepo.queryByEmployee(employeeId);
 	}
 	
-	@CacheEvict(key="#employeeId")
+//	@CachePut(key="#employeeId")
 	@Override
 	public long createTicket(String title, String desc, long employeeId) {
 		
@@ -44,7 +45,7 @@ public class TicketServiceImpl implements  TicketService{
 		return t.getId();
 	}
 	
-	@CacheEvict(key="#employeeId")
+//	@CacheEvict(key="#employeeId")
 	@Override
 	public void deleteTicket(long id) {
 		ticketDao.deleteById(id);
@@ -52,13 +53,16 @@ public class TicketServiceImpl implements  TicketService{
 	}
 	
 	
-	@CacheEvict(key="#employeeId")
+//	@CacheEvict(key="#employeeId")
 	@Override
 	public void updateTicket(long id, String title, String desc, long employeeId) {
 		
 		Optional<Ticket> t = ticketDao.findById(id);
 		if(t.isPresent()) {
-		ticketDao.save(t.get());
+			Ticket tick = t.get();
+			tick.setTitle(title);
+			tick.setDescription(desc);
+		ticketDao.save(tick);
 		}
 		
 	}
