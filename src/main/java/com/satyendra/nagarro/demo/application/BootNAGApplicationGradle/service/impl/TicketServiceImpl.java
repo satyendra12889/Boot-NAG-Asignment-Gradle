@@ -41,8 +41,8 @@ public class TicketServiceImpl implements  TicketService{
 		t.setEmp(e);
 		t.setTitle(title);
 		t.setDescription(desc);
-		ticketDao.save(t);
-		return t.getId();
+		Ticket t1 = ticketDao.save(t);
+		return t1.getId();
 	}
 	
 //	@CacheEvict(key="#employeeId")
@@ -55,7 +55,7 @@ public class TicketServiceImpl implements  TicketService{
 	
 //	@CacheEvict(key="#employeeId")
 	@Override
-	public void updateTicket(long id, String title, String desc, long employeeId) {
+	public long updateTicket(long id, String title, String desc, long employeeId) {
 		
 		Optional<Ticket> t = ticketDao.findById(id);
 		if(t.isPresent()) {
@@ -63,7 +63,10 @@ public class TicketServiceImpl implements  TicketService{
 			tick.setTitle(title);
 			tick.setDescription(desc);
 		ticketDao.save(tick);
+		return tick.getId();
 		}
+		
+		return -1;
 		
 	}
 

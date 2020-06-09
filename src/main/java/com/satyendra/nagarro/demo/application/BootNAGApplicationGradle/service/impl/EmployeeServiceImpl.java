@@ -25,8 +25,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee e  = new Employee();
 		e.setName(username);
 		e.setPassword(password);
-		empDao.save(e);
-		return e.id;
+		Employee e1 = empDao.save(e);
+		return e1.getId();
 	}
 
 	@Override
@@ -35,6 +35,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return (emp!=null&&emp.size()>0)?emp.get(0):null;
 	}
 
+	
+	
 	@Override
 	public Employee getEmployee(String username, String password) {
 		
