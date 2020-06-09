@@ -32,6 +32,8 @@ These additional references should also help you:
 -------------
 You have to select "Refresh Dependencies" in the "Gradle" context menu that appears when you right-click the project in the Package Explorer.
 ----------
+*[configure profile loging  ](https://reflectoring.io/profile-specific-logging-spring-boot/,https://howtodoinjava.com/spring-boot2/logging/profile-specific-logging/)
+*[JPA ](https://dzone.com/articles/spring-data-jpa-1)
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
