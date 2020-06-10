@@ -49,7 +49,7 @@ public class TicketController {
 	}
 	
 	// delete
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("id") long ticketId) {
 		ticketservice.deleteTicket(ticketId);
 		ResponseEntity<String> response = new ResponseEntity<String>("Success", HttpStatus.OK); 

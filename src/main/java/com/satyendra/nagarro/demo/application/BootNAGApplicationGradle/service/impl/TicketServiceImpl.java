@@ -25,13 +25,12 @@ public class TicketServiceImpl implements  TicketService{
 	@Autowired
 	TicketJpaRepository ticketRepo;
 	
-//	@Cacheable(value = "ticket", key = "#employeeId")
+	@Cacheable(value = "data")
 	@Override
 	public List<Ticket> getAllTicket(long employeeId) {
 		return ticketRepo.queryByEmployee(employeeId);
 	}
 	
-//	@CachePut(key="#employeeId")
 	@Override
 	public long createTicket(String title, String desc, long employeeId) {
 		
@@ -45,7 +44,7 @@ public class TicketServiceImpl implements  TicketService{
 		return t1.getId();
 	}
 	
-//	@CacheEvict(key="#employeeId")
+	@CacheEvict(value="data",allEntries=true)
 	@Override
 	public void deleteTicket(long id) {
 		ticketDao.deleteById(id);
@@ -53,7 +52,7 @@ public class TicketServiceImpl implements  TicketService{
 	}
 	
 	
-//	@CacheEvict(key="#employeeId")
+	@CacheEvict(value="data", allEntries=true)
 	@Override
 	public long updateTicket(long id, String title, String desc, long employeeId) {
 		

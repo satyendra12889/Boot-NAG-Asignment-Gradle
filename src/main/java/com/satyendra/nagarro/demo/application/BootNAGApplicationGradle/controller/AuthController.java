@@ -27,7 +27,7 @@ public class AuthController {
 	@RequestMapping(value="/signUp" , method = RequestMethod.POST)
 	public ResponseEntity<String> signUp(@RequestBody AuthenticationRequest request) {
 		
-		long id = employeeService.createEmployee(request.getUserName(), request.getPassword());
+		long id = employeeService.createEmployee(request.getUsername(), request.getPassword());
 		ResponseEntity<String> response;
 		if(id>0) {
 			response = new ResponseEntity<String>(id+"", HttpStatus.OK);
