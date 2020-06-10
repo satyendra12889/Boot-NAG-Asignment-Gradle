@@ -2,6 +2,8 @@ package com.satyendra.nagarro.demo.application.BootNAGApplicationGradle.controll
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,9 @@ import com.satyendra.nagarro.demo.application.BootNAGApplicationGradle.util.Secu
 @RestController
 public class TicketController {
 	
+	public static final Logger logger = LoggerFactory.getLogger(TicketController.class);
+
+	
 	@Autowired
 	TicketService ticketservice;
 	
@@ -38,6 +43,7 @@ public class TicketController {
 	// update 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ResponseEntity<String> update(@RequestBody TicketRequest ticketRequest) {
+		logger.debug(ticketRequest.toString());
 		long rtn = ticketservice.updateTicket(ticketRequest.getTicketId(), ticketRequest.getTitle(), ticketRequest.getDescription(), scService.getEmployeeUserFromContext().getId());
 		ResponseEntity<String> response ;
 		if(rtn > 0) {
@@ -45,29 +51,31 @@ public class TicketController {
 		}else {
 			response = new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
+		logger.debug("ticket Id:" + rtn);
 		return response;
 	}
 	
 	// delete
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> delete(@PathVariable("id") long ticketId) {
+		logger.debug("delete ticket id"+ ticketId);
 		ticketservice.deleteTicket(ticketId);
 		ResponseEntity<String> response = new ResponseEntity<String>("Success", HttpStatus.OK); 
-
+		logger.debug("success fully deleted");
 		return response;
 	}
 	
 	// list 
 	@RequestMapping(value = "/listTicket", method = RequestMethod.GET )
 	public ResponseEntity<List<Ticket>> list() {
-		
+		logger.debug("Listing Tickets");
 		Employee employee = scService.getEmployeeUserFromContext();
 		
 		System.out.println("UserName : "+  "Emploee Id: "+ employee.getId());
 		
 		List<Ticket> t = ticketservice.getAllTicket(employee.getId());
 		ResponseEntity<List<Ticket>> response = new ResponseEntity<List<Ticket>>(t, HttpStatus.OK); 
-
+		logger.debug(t.toString());
 		return response;
 	}
 	
@@ -80,14 +88,14 @@ public class TicketController {
 	
 	@RequestMapping(value = "/createTicket", method = RequestMethod.POST )
 	public ResponseEntity<String> list( @RequestBody TicketRequest ticketrequest ) {
-		
+		logger.debug(ticketrequest.toString());
 		Employee employee = scService.getEmployeeUserFromContext();
 		
 		System.out.println("UserName : "+  "Emploee Id: "+ employee.getId());
 		
 		long id = ticketservice.createTicket(ticketrequest.getTitle(), ticketrequest.getDescription(), employee.getId());
 		ResponseEntity<String> response = new ResponseEntity<String>(id+"", HttpStatus.OK); 
-
+		logger.debug("created ticket id:" + id);
 		return response;
 	}
 }
